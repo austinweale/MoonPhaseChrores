@@ -1,6 +1,6 @@
 import os
 from markovbot import MarkovBot
-
+import twitter
 # ALL YOUR SECRET STUFF!
 # Consumer Key (API Key)
 cons_key = 'eW7wk6JukwBShbsaIW3eChugO'
@@ -20,19 +20,17 @@ book = os.path.join(dirname, 'phase-chores.txt')
 # Make your bot read the book!
 tweetbot.read(book)
 
-my_first_text = tweetbot.generate_text(25, seedword=['dream', 'psychoanalysis'])
-print("tweetbot says:")
-print(my_first_text)
+#my_first_text = tweetbot.generate_text(25, seedword=['dream', 'psychoanalysis'])
+#print("tweetbot says:")
+#print(my_first_text)
 
-Python
+
 
 # Log in to Twitter
 tweetbot.twitter_login(cons_key, cons_secret, access_token, access_token_secret)
 
-Python
-
 # Start periodically tweeting
-tweetbot.twitter_tweeting_start(days=0, hours=19, minutes=30, keywords=None, prefix=None, suffix='#PyGaze')
+#tweetbot.twitter_tweeting_start(days=0, hours=19, minutes=30, keywords=None, prefix=None, suffix='#PyGaze')
 
 # Use the following to stop periodically tweeting
 # (Don't do this directly after starting it, or your bot will do nothing!)
