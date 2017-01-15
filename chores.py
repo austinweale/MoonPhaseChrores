@@ -1,6 +1,7 @@
 import os
-from markovbot import MarkovBot
+import tweepy
 import twitter
+import time
 # ALL YOUR SECRET STUFF!
 # Consumer Key (API Key)
 cons_key = 'eW7wk6JukwBShbsaIW3eChugO'
@@ -11,23 +12,31 @@ access_token = '819717437805371400-bvV0j8Rr1FULUmDLyvyfae6Csr3DEGX'
 # Access Token Secret
 access_token_secret = 'eydOBkLUkxvtCYJWfsFC9kheoPSxDfI1ysHxgbvMkABLD'
 
-tweetbot = MarkovBot()
+auth = tweepy.OAuthHandler(cons_key, cons_secret)
+auth.set_access_token(access_token, access_token_secret)
+api = tweepy.API(auth)
 
 # Get the current directory's path
 dirname = os.path.dirname(os.path.abspath(__file__))
 # Construct the path to the book
-book = os.path.join(dirname, 'phase-chores.txt')
+#book = os.path.join(dirname, 'phase-chores.txt')
 # Make your bot read the book!
-tweetbot.read(book)
+#tweetbot.read(book)
 
-#my_first_text = tweetbot.generate_text(25, seedword=['dream', 'psychoanalysis'])
-#print("tweetbot says:")
-#print(my_first_text)
+text_file = open("phase-chores.txt")
+
+lines = text_file.read().split('\n')
+
+for line in lines: 
+    api.update_status(line)
+    print line
+    print '...'
+    time.sleep(15) # Sleep for 15 seconds
 
 
 
 # Log in to Twitter
-tweetbot.twitter_login(cons_key, cons_secret, access_token, access_token_secret)
+#tweetbot.twitter_login(cons_key, cons_secret, access_token, access_token_secret)
 
 # Start periodically tweeting
 #tweetbot.twitter_tweeting_start(days=0, hours=19, minutes=30, keywords=None, prefix=None, suffix='#PyGaze')
