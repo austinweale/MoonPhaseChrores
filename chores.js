@@ -13,7 +13,7 @@ var phases = ["fckn test",
 				"First quarter fingers crossed for no wet hole!"]
 
 var num = 0
-CronJob.schedule('0 18 19, 27, 3 * *', function() {
+CronJob.schedule('0 0 18 19,27,3 * *', function() {
 	console.log("test");
 		if(num < phases.length){
 		Twitter.post('statuses/update', { status: phases[num]}, function(err, data, response) {
